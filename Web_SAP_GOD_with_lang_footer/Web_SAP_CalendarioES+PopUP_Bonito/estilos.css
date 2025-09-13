@@ -1,0 +1,464 @@
+/* ============================
+   🎨 estilos.css final limpio
+   Colores: verde botella (#0a5c3b), grises y blanco
+   Tipografía: Montserrat (Google Fonts)
+   ============================ */
+
+/* --- Fuente global --- */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap');
+
+:root {
+  --hue: 27;
+  --sat: 69%;
+  --white: hsl(0, 0%, 100%);
+  --green-primary: #4caf50;
+  --gray-dark: #121212;
+  --background-dark: #060010;
+  --border-color: #392e4e;
+  color-scheme: light dark;
+}
+
+body {
+  margin: 0;
+  font-family: 'Montserrat', Arial, sans-serif;
+  color: #222;
+  background: url("img/ParcheSAP.jpg") center/cover no-repeat fixed;
+  position: relative;
+}
+
+/* --- Reset y medios --- */
+html { box-sizing: border-box; }
+*, *::before, *::after { box-sizing: inherit; }
+img, video, svg, canvas { max-width: 100%; height: auto; }
+html, body { overflow-x: hidden; }
+
+/* --- Overlay oscuro sobre fondo --- */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.3));
+  z-index: -1;
+}
+
+/* --- Header / Navbar --- */
+header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: rgba(10,92,59,0.6);
+  z-index: 1000;
+}
+
+#navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 2000;
+  transition: all 0.3s ease;
+}
+
+header nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5em 2em;
+  transition: padding 0.3s ease;
+}
+
+header nav .logo {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: #fff;
+}
+
+header nav .logo img {
+  height: 80px;
+  margin-right: 0.5em;
+  transition: height 0.3s ease;
+}
+
+header nav ul {
+  list-style: none;
+  display: flex;
+  gap: 1em;
+  margin: 0;
+  padding: 0;
+}
+
+header nav ul li a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  transition: color 0.3s ease;
+}
+
+header nav ul li a:hover { color: #cfcfcf; }
+
+/* --- Navbar scrolled --- */
+#navbar.scrolled nav { padding: 0.2em 2em; }
+#navbar.scrolled .logo img { height: 70px; }
+
+/* --- Hero --- */
+.hero {
+  height: 65vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  text-align: center;
+  font-size: clamp(1.5rem, 2.5vw + 0.5rem, 2.2rem);
+}
+.hero h1 { font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 1rem; text-shadow: 2px 2px 6px rgba(0,0,0,0.7); }
+.hero p { font-size: 1.2rem; margin-bottom: 1.5rem; }
+.hero .btn { background: #0a5c3b; color: #fff; padding: 0.8em 1.5em; border-radius: 8px; font-weight: 600; transition: background 0.3s ease; }
+.hero .btn:hover { background: #117a52; }
+
+/* === Page Titles === */
+.page-title {
+  display: inline-block;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #fff;
+  text-align: center;
+  background-color: rgba(10, 92, 59, 0.85);
+  padding: 0.8rem 1.5rem;
+  margin: 1rem auto;
+  border-radius: 12px;
+  max-width: fit-content;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+}
+
+/* --- Secciones de contenido --- */
+.content-section {
+  padding: 3em 2em;
+  max-width: 900px;
+  margin: auto;
+  background: #fff;
+  margin-bottom: 2em;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+.content-section h2 { font-size: clamp(1.5rem, 1.6vw + 0.6rem, 1.9rem); margin-bottom: 0.5em; color: #0a5c3b; }
+.content-section p { font-size: 1rem; line-height: 1.7; text-align: justify; color: #333; }
+.content-section img { max-width: 60%; border-radius: 8px; margin: 0 auto 1em; display: block; }
+
+/* --- Footer --- */
+footer {
+  background: rgba(34, 34, 34, 0.6);
+  color: #fff;
+  text-align: center;
+  padding: 2em 1em;
+  font-size: 0.9rem;
+  position: relative;
+  z-index: 100;
+  backdrop-filter: blur(6px);
+}
+
+footer .social-icons {
+  display: flex;
+  justify-content: center;
+  gap: 1.5em;
+  margin-bottom: 1em;
+}
+
+footer .social-icons a svg {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+  fill: #fff;
+  transition: transform 0.3s ease, fill 0.3s ease;
+}
+
+footer .social-icons a:hover svg {
+  transform: scale(1.2);
+  fill: #0a5c3b;
+}
+
+footer p { margin: 0; color: #fff; }
+
+/* --- Intro overlay con logo girando --- */
+#intro-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: url("img/parchesap.jpg") no-repeat center center/cover; display: flex; justify-content: center; align-items: center; z-index: 3000; }
+#intro-logo { width: 800px; height: auto; animation: spin3D 3s linear infinite; transform-style: preserve-3d; }
+@keyframes spin3D { from { transform: rotateY(0deg); } to { transform: rotateY(360deg); } }
+
+/* --- Animación reveal --- */
+.reveal { opacity: 0; transform: translateY(50px); transition: all 0.8s ease-out; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* --- Qui som & Entrenadors --- */
+.qui-som, .entrenadors {
+  padding: 40px 20px;
+  text-align: center;
+  margin: 20px auto;
+  max-width: 1000px;
+}
+.qui-som { background: #fff; border-radius: 15px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+.qui-som p { max-width: 800px; margin: 0 auto 20px; line-height: 1.6; text-align: justify; }
+
+.entrenadors .cards {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.entrenadors .card {
+  background: #0a5c3b;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+  padding: 20px;
+  width: 280px;
+  text-align: center;
+  transition: transform 0.2s ease, background 0.2s ease;
+  color: #fff;
+}
+.entrenadors .card:hover { transform: translateY(-5px); background: #117a52; }
+.entrenadors .card h3 { margin: 15px 0; }
+.entrenadors .card ul { list-style: none; padding: 0; }
+.entrenadors .card li { margin: 10px 0; color: #f0f0f0; display: flex; align-items: center; gap: 8px; }
+.icon-sword { display: inline-block; width: 18px; height: 18px; background: url('icons/sword.svg') no-repeat center; background-size: contain; }
+.trainer-photo { width: 120px; height: 120px; object-fit: cover; border-radius: 50%; margin: 0 auto 10px; border: 3px solid #fff; display: block; }
+
+/* --- Responsive entrenadors --- */
+@media (max-width: 900px) {
+  .entrenadors .cards { flex-direction: column; align-items: center; }
+  .entrenadors .card { width: 90%; max-width: 350px; }
+  .qui-som { padding: 30px 15px; }
+  .page-title { font-size: 1.6rem; margin: 1rem auto; padding: 0.7rem 1.2rem; }
+}
+
+/* --- Subtítulos con recuadro blanco --- */
+.subtitle-box { display: inline-block; background: #fff; color: #222; padding: 0.5em 1em; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); margin: 1em 0; }
+
+/* ============================
+   🎨 Material – tarjetas
+   ============================ */
+#material .card {
+  background: #0a5c3b;
+  border-radius: 15px;
+  padding: 1.5rem;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.35);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
+  text-align: center;
+}
+
+#material .card:hover {
+  transform: translateY(-10px) scale(1.05);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.5);
+}
+
+.card-icon {
+  display: block;
+  margin: 0 auto 1rem;
+  max-width: 90%;
+  max-height: 180px;
+  object-fit: contain;
+  border-radius: 10px;
+  transition: transform 0.3s ease;
+}
+
+#material .card:hover .card-icon { transform: scale(1.1); }
+
+#material .card__title { font-size: 1.4rem; margin-bottom: 0.5rem; }
+#material .card__description { font-size: 1rem; color: #ccc; }
+
+#material .card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  grid-auto-rows: 1fr;
+  gap: 2rem;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.card-small { grid-row: span 1; grid-column: span 1; }
+.card-tall  { grid-row: span 2; grid-column: span 1; }
+.card-wide  { grid-row: span 1; grid-column: span 2; }
+
+@media (max-width: 1024px) { 
+  #material .card-grid { grid-template-columns: repeat(2, 1fr); }
+  .card-wide { grid-column: span 2; }
+  .card-tall { grid-row: span 2; }
+}
+
+@media (max-width: 600px) { 
+  #material .card-grid { grid-template-columns: 1fr; }
+  .card-wide, .card-tall { grid-row: span 1; grid-column: span 1; }
+}
+
+/* --- Botón hamburguesa --- */
+.menu-toggle {
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  gap: 6px;
+}
+
+.menu-toggle span {
+  width: 30px;
+  height: 3px;
+  background: #0a5c3b;
+  transition: all 0.3s ease;
+}
+
+/* --- Menú desplegable --- */
+.menu {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 35%;
+  height: 100vh;
+  background: rgba(26, 26, 26, 0.85);
+  backdrop-filter: blur(5px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: right 0.5s ease;
+  z-index: 2500;
+  padding-top: 3rem;
+}
+
+.menu.active { right: 0; }
+
+.menu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.menu ul li {
+  opacity: 0;
+  transform: translateX(50px);
+  animation: fadeInRight 0.5s forwards;
+}
+
+.menu.active ul li:nth-child(1) { animation-delay: 0.2s; }
+.menu.active ul li:nth-child(2) { animation-delay: 0.4s; }
+.menu.active ul li:nth-child(3) { animation-delay: 0.6s; }
+.menu.active ul li:nth-child(4) { animation-delay: 0.8s; }
+.menu.active ul li:nth-child(5) { animation-delay: 1s; }
+.menu.active ul li:nth-child(6) { animation-delay: 1.2s; }
+
+@keyframes fadeInRight {
+  to { opacity: 1; transform: translateX(0); }
+}
+
+.menu ul li a {
+  text-decoration: none;
+  color: white;
+  font-size: 1.5rem;
+  font-weight: 600;
+  transition: color 0.3s;
+}
+
+.menu ul li a:hover { color: #4caf50; }
+
+.language-switcher-menu {
+  margin-top: 3rem;
+  display: flex;
+  gap: 10px;
+}
+
+.lang-btn {
+  background: rgba(255,255,255,0.9);
+  border: 2px solid #0a5c3b;
+  padding: 6px 10px;
+  border-radius: 15px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 600;
+  font-size: 0.8rem;
+  color: #0a5c3b;
+}
+
+.lang-btn.active {
+  background: #0a5c3b;
+  color: white;
+}
+
+.lang-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.menu-close {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  font-size: 2rem;
+  color: #fff;
+  cursor: pointer;
+  z-index: 2600;
+}
+
+/* ============================
+   🎨 Categorías – Competicions
+   ============================ */
+.main-categories {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  margin-top: 2rem;
+  gap: 1rem;
+}
+
+.main-card {
+  background: #0a5c3b;
+  color: white;
+  border-radius: 15px;
+  padding: 1rem 2rem;
+  text-align: center;
+  cursor: pointer;
+  min-width: 150px;
+  transition: transform 0.3s, background 0.3s;
+}
+
+.main-card:hover {
+  transform: translateY(-5px);
+  background: #117a52;
+}
+
+.sub-categories {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  justify-content: center;
+}
+
+.sub-card {
+  display: none;              /* Ocultas por defecto */
+  border-radius: 12px;
+  padding: 0.5rem 1rem;
+  font-weight: 600;
+  cursor: default;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+/* 🌟 Esta clase se añade con JS al hacer click en la categoría */
+.sub-card.show {
+  display: inline-block;      /* Se muestran */
+  opacity: 1;                 /* Transición suave */
+  transform: translateY(0);
+}
+
+.sub-card.petits { background-color: #f9c5d1; color: #333; }
+.sub-card.mitjans { background-color: #c5f9d1; color: #333; }
+.sub-card.grans { background-color: #c5d1f9; color: #333; }

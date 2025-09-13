@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Club Esgrima SAP</title>
+
+  <!-- Tus estilos y scripts propios -->
+  <link rel="stylesheet" href="estilos.css">
+  <link rel="stylesheet" href="estilos-responsive.css">
+  <link rel="stylesheet" href="sap-navbar.css">
+  <script defer src="script.js"></script>
+
+  <!-- FullCalendar CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.css" rel="stylesheet">
+  <!-- FullCalendar JS -->
+  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js"></script>
+  <!-- Script de locales para idiomas -->
+  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/locales-all.min.js"></script>
+  <!-- SweetAlert2 -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+  <style>
+    #calendar { max-width: 700px; margin: 40px auto; }
+    #page-content { padding-top: 72px; }
+
+    /* ===== NUEVO NAVBAR ===== */
+    .navbar {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: transparent;
+      z-index: 2000;
+    }
+
+    .logo img {
+      height: 150px;
+      width: auto;
+    }
+
+    /* Botón hamburguesa */
+    .menu-toggle {
+      display: flex;
+      flex-direction: column;
+      cursor: pointer;
+      gap: 6px;
+    }
+
+    .menu-toggle span {
+      width: 30px;
+      height: 3px;
+      background: #0a5c3b;
+      transition: all 0.3s ease;
+    }
+
+    /* Menú desplegable */
+    .menu {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 30%; /* más estrecho */
+      height: 100vh; /* altura completa */
+      background: rgba(26, 26, 26, 0.85); /* gris semi-transparente */
+      backdrop-filter: blur(5px); /* efecto desenfoque opcional */
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      transition: right 0.5s ease;
+    }
+
+    .menu.active { right: 0; }
+
+    .menu ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .menu ul li a {
+      text-decoration: none;
+      color: white;
+      font-size: 1.5rem;
+      font-weight: 600;
+      transition: color 0.3s;
+    }
+
+    .menu ul li a:hover { color: #4caf50; }
+
+    /* Selector de idiomas dentro del menú */
+    .language-switcher-menu {
+      /* ===== CAMBIO: Subido un poco más arriba ===== */
+      margin-top: 0.5rem; 
+      display: flex;
+      gap: 10px;
+    }
+
+    .lang-btn {
+      background: rgba(255,255,255,0.9);
+      border: 2px solid #0a5c3b;
+      padding: 6px 10px;
+      border-radius: 15px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-weight: 600;
+      font-size: 0.8rem;
+      color: #0a5c3b;
+    }
+
+    .lang-btn.active {
+      background: #0a5c3b;
+      color: white;
+    }
+
+    .lang-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+
+    /* Botón cerrar menú */
+    .btn-cerrar {
+      align-self: flex-end;
+      background: transparent;
+      color: #fff;
+      border: none;
+      font-size: 2rem;
+      cursor: pointer;
+      margin: 1rem;
+      padding: 0;
+      line-height: 1;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Overlay de introducción con el logo -->
+  <div id="intro-overlay">
+    <img src="img/fotosap.png" alt="Logo Club Esgrima" id="intro-logo">
+  </div>
+
+  <!-- Contenido de la página -->
+  <div id="page-content">
+    <!-- Navbar nuevo -->
+    <header class="navbar">
+      <div class="logo">
+        <a href="index.html"><img src="img/fotosap.png" alt="SAP Logo"></a>
+      </div>
+
+      <!-- Botón hamburguesa -->
+      <div class="menu-toggle" id="menu-toggle">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+
+      <!-- Menú desplegable -->
+      <nav class="menu" id="menu">
+        <!-- Cruz para cerrar, solo el símbolo ✕ -->
+        <button id="cerrar-menu" class="btn-cerrar">✕</button>
+        <ul>
+          <li><a href="index.html">Inici</a></li>
+          <li><a href="qui-som.html">Qui Som</a></li>
+          <li><a href="classes.html">Classes</a></li>
+          <li><a href="competicions.html">Competicions</a></li>
+          <li><a href="material.html">Material</a></li>
+          <li><a href="contacte.html">Contacte</a></li>
+        </ul>
+        <!-- Selector de idiomas en el menú -->
+        <div class="language-switcher-menu">
+          <button class="lang-btn active" data-lang="ca">CAT</button>
+          <button class="lang-btn" data-lang="es">ES</button>
+          <button class="lang-btn" data-lang="en">EN</button>
+        </div>
+      </nav>
+    </header>
+
+    <section class="hero">
+      <h1 class="page-title">Sala d'Armes Penedès</h1>
+    </section>
+
+    <main>
+      <section class="content-section reveal">
+        <h2>Iniciació a l’esgrima</h2>
+        <img src="img/Niño.png" alt="Niño">
+        <p> Al nostre club volem que tothom tingui l’oportunitat de descobrir l’esgrima sense pressions. Per això, <strong>les primeres classes són gratuïtes</strong>, perquè els nous alumnes puguin provar aquest esport i veure si realment els apassiona. </p>
+        <p> Sabem que una de les principals preocupacions de les famílies és el cost del material. Per aquest motiu, <strong>durant els primers mesos el club posa a disposició dels nous tiradors la major part del material necessari</strong>, de manera que els pares i mares no hagin d’assumir una gran despesa d’entrada. </p>
+        <p> També volem remarcar que <strong>no obliguem ningú a competir</strong>. El nostre objectiu principal és <strong>donar a conèixer aquest esport meravellós i fer que els nens i nenes el gaudeixin</strong>. Més que un club, som <strong>una família</strong>, i el que ens importa és que els petits s’ho passin bé, facin amics i visquin experiències positives, no només entrenar per guanyar. </p>
+      </section>
+
+      <!-- Calendario competicions -->
+      <section class="content-section reveal">
+        <h2>Calendari competicions</h2>
+        <div class="calendar-legend">
+          <div class="legend-item">
+            <span class="legend-color" style="background-color:#FFD1DC;"></span> ➜ Festivo
+          </div>
+          <details>
+            <summary>Petits</summary>
+            <div class="legend-item"><span class="legend-color" style="background-color:#FFB3BA;"></span> ➜ M-11</div>
+            <div class="legend-item"><span class="legend-color" style="background-color:#FFDFBA;"></span> ➜ M-13</div>
+            <div class="legend-item"><span class="legend-color" style="background-color:#FFFFBA;"></span> ➜ M-15</div>
+          </details>
+          <details>
+            <summary>Mitjans</summary>
+            <div class="legend-item"><span class="legend-color" style="background-color:#BAFFC9;"></span> ➜ M-17</div>
+            <div class="legend-item"><span class="legend-color" style="background-color:#BAE1FF;"></span> ➜ M-20</div>
+            <div class="legend-item"><span class="legend-color" style="background-color:#D4BAFF;"></span> ➜ ABS</div>
+          </details>
+          <details>
+            <summary>Grans</summary>
+            <div class="legend-item"><span class="legend-color" style="background-color:#FFC1E3;"></span> ➜ VET-30</div>
+            <div class="legend-item"><span class="legend-color" style="background-color:#FFEBBA;"></span> ➜ VET-40</div>
+            <div class="legend-item"><span class="legend-color" style="background-color:#BAFFD7;"></span> ➜ VET-50</div>
+            <div class="legend-item"><span class="legend-color" style="background-color:#BAE1FF;"></span> ➜ VET-60</div>
+            <div class="legend-item"><span class="legend-color" style="background-color:#E3BAFF;"></span> ➜ VET-70</div>
+          </details>
+        </div>
+
+        <div id="calendar"></div>
+      </section>
+
+      <section class="content-section reveal">
+        <h2>Esgrima</h2>
+        <img src="img/Unai_Fondo.jpg" alt="UnaiFondo">
+      </section>
+
+      <section class="content-section reveal">
+        <h2>Esgrima Online</h2>
+        <img src="img/esgrima3.jpg" alt="Esgrima Online">
+        <p>Clases híbrides per a tots els nivells.</p>
+      </section>
+    </main>
+
+    <!-- Footer mejorado -->
+    <footer>
+      <div class="social-icons">
+        <!-- Instagram -->
+        <a href="https://www.instagram.com/esgrimasap/" target="_blank" rel="noopener">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+            <path d="M224,202.66A53.34,53.34,0,1,0,277.34,256,53.38,53.38,0,0,0,224,202.66Zm124.71-41a54.28,54.28,0,0,0-30.67-30.68c-21.3-8.42-71.68-6.47-95.91-6.47s-74.61-1.95-95.91,6.47a54.28,54.28,0,0,0-30.67,30.68c-8.42,21.3-6.47,71.68-6.47,95.91s-1.95,74.61,6.47,95.91a54.28,54.28,0,0,0,30.67,30.68c21.3,8.42,71.68,6.47,95.91,6.47s74.61,1.95,95.91-6.47a54.28,54.28,0,0,0,30.67-30.68c8.42-21.3,6.47-71.68,6.47-95.91S357.13,183,348.71,161.66ZM224,338a82,82,0,1,1,82-82A82,82,0,0,1,224,338Zm85-148a19,19,0,1,1,19-19A19,19,0,0,1,309,190Z"/>
+          </svg>
+        </a>
+
+        <!-- TikTok -->
+        <a href="https://www.tiktok.com/@esgrimasap" target="_blank" rel="noopener">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+            <path d="M448,209.9a210.6,210.6,0,0,1-65.7-10.7V341.1a108,108,0,1,1-108-108V282.1a54,54,0,1,0,54,54V209.9Z"/>
+          </svg>
+        </a>
+      </div>
+      <p>© 2025 Esgrima SAP.</p>
+    </footer>
+
+    <!-- 🔗 Font Awesome CDN para los iconos -->
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+  </div>
+
+  <!-- Scripts unificados -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      // ---- Intro overlay ----
+      const intro = document.getElementById("intro-overlay");
+      setTimeout(() => {
+        intro.style.opacity = "0";
+        intro.style.transition = "opacity 1s ease";
+        setTimeout(() => {
+          intro.style.display = "none";
+        }, 1000);
+      }, 4000); // 4 segundos
+
+      // ---- FullCalendar ----
+      let calendarEl = document.getElementById('calendar');
+      if (calendarEl) {
+        let calendar = new FullCalendar.Calendar(calendarEl, {
+          initialView: 'dayGridMonth',
+          selectable: false,
+          editable: false,
+          locale: 'es',
+          events: "eventos.json",
+          eventClick: function(info) {
+            let desc = info.event.extendedProps.description || "Sin información adicional";
+            Swal.fire({
+              title: info.event.title,
+              html: desc.replace(/\n/g, "<br>"),
+              icon: 'info',
+              confirmButtonText: 'Cerrar'
+            });
+          }
+        });
+        calendar.render();
+      }
+
+      // ---- Menú hamburguesa ----
+      const menuToggle = document.getElementById("menu-toggle");
+      const menu = document.getElementById("menu");
+      const botonCerrar = document.getElementById("cerrar-menu");
+
+      if (menuToggle && menu) {
+        // ===== CAMBIO: Hacer que se abra al primer click =====
+        menuToggle.addEventListener("click", () => {
+          menu.classList.add("active");
+          menuToggle.classList.add("open");
+        });
+      }
+
+      if (botonCerrar && menu) {
+        botonCerrar.addEventListener("click", () => {
+          menu.classList.remove("active");
+          menuToggle.classList.remove("open");
+        });
+      }
+
+      // Cerrar menú al hacer click fuera
+      document.addEventListener('click', (e) => {
+        if (menu.classList.contains('active') && !menu.contains(e.target) && e.target !== menuToggle) {
+          menu.classList.remove('active');
+          menuToggle.classList.remove('open');
+        }
+      });
+
+    });
+  </script>
+</body>
+</html>

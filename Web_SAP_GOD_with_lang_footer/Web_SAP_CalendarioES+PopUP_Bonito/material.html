@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Material – Club Esgrima SAP</title>
+
+  <!-- Tus estilos y scripts propios -->
+  <link rel="stylesheet" href="estilos.css">
+  <link rel="stylesheet" href="estilos-responsive.css">
+  <script defer src="script.js"></script>
+
+  <style> 
+    #page-content { padding-top: 72px; }
+
+    /* ===== NUEVO NAVBAR ===== */
+    .navbar {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: transparent;
+      z-index: 2000;
+    }
+
+    .logo img { height: 150px; width: auto; }
+
+    /* Botón hamburguesa */
+    .menu-toggle {
+      display: flex; flex-direction: column; cursor: pointer; gap: 6px;
+    }
+    .menu-toggle span {
+      width: 30px; height: 3px; background: #0a5c3b; transition: all 0.3s ease;
+    }
+
+    /* Menú desplegable */
+    .menu {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 30%;
+      height: 100vh;
+      background: rgba(26,26,26,0.85);
+      backdrop-filter: blur(5px);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      transition: right 0.5s ease;
+      z-index: 2001;
+    }
+    .menu.active { right: 0; }
+
+    .menu ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 2rem; }
+    .menu ul li a {
+      text-decoration: none; color: white; font-size: 1.5rem; font-weight: 600; transition: color 0.3s;
+    }
+    .menu ul li a:hover, .menu ul li a.active { color: #4caf50; }
+
+    /* Selector de idiomas */
+    .language-switcher-menu { margin-top: 0.5rem; display: flex; gap: 10px; }
+    .lang-btn {
+      background: rgba(255,255,255,0.9); border: 2px solid #0a5c3b;
+      padding: 6px 10px; border-radius: 15px; cursor: pointer;
+      font-weight: 600; font-size: 0.8rem; color: #0a5c3b; transition: all 0.3s ease;
+    }
+    .lang-btn.active { background: #0a5c3b; color: white; }
+    .lang-btn:hover { transform: translateY(-2px); box-shadow: 0 4px 8px rgba(0,0,0,0.2); }
+
+    /* Botón cerrar menú */
+    .btn-cerrar {
+      align-self: flex-end; background: transparent; color: #fff;
+      border: none; font-size: 2rem; cursor: pointer; margin: 1rem; padding: 0; line-height: 1;
+    }
+  </style>
+</head>
+
+<body>
+<div id="page-content">
+  <!-- Navbar -->
+  <header class="navbar">
+    <div class="logo"><a href="index.html"><img src="img/fotosap.png" alt="SAP Logo"></a></div>
+
+    <div class="menu-toggle" id="menu-toggle"><span></span><span></span><span></span></div>
+
+    <nav class="menu" id="menu">
+      <button id="cerrar-menu" class="btn-cerrar">✕</button>
+      <ul>
+        <li><a href="index.html">Inici</a></li>
+        <li><a href="qui-som.html">Qui Som</a></li>
+        <li><a href="classes.html">Classes</a></li>
+        <li><a href="competicions.html">Competicions</a></li>
+        <li><a href="material.html" class="active">Material</a></li>
+        <li><a href="contacte.html">Contacte</a></li>
+      </ul>
+      <div class="language-switcher-menu">
+        <button class="lang-btn active" data-lang="ca">CAT</button>
+        <button class="lang-btn" data-lang="es">ES</button>
+        <button class="lang-btn" data-lang="en">EN</button>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero hero-material">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <h1 class="page-title">Material d’Esgrima</h1>
+      <p>Equipament oficial i recomanat pel Club Esgrima SAP</p>
+    </div>
+  </section>
+
+  <!-- Material -->
+  <section id="material" class="material">
+    <div class="card-grid">
+      <div class="card card-small">
+        <img src="img/careta.png" alt="Careta" class="card-icon">
+        <div class="card__content">
+          <h2 class="card__title">Careta de competició</h2>
+          <p class="card__description">Protecció facial i capçal ajustable, homologada per la federació.</p>
+        </div>
+      </div>
+      <div class="card card-tall">
+        <img src="img/espada.png" alt="Espasa" class="card-icon">
+        <div class="card__content">
+          <h2 class="card__title">Espasa d’esgrima</h2>
+          <p class="card__description">Fulla lleugera i flexible, ideal per entrenaments i competicions.</p>
+        </div>
+      </div>
+      <div class="card card-small">
+        <img src="img/peto.png" alt="Peto" class="card-icon">
+        <div class="card__content">
+          <h2 class="card__title">&nbsp;</h2>
+          <p class="card__description">&nbsp;</p>
+        </div>
+      </div>
+      <div class="card card-wide">
+        <img src="img/pantalon.png" alt="Pantalons" class="card-icon">
+        <div class="card__content">
+          <h2 class="card__title">Pantalons d’esgrima</h2>
+          <p class="card__description">Flexibles i còmodes, amb reforç a zones crítiques per a màxima seguretat.</p>
+        </div>
+      </div>
+      <div class="card card-tall">
+        <img src="img/chaqueta.png" alt="Chaqueta" class="card-icon">
+        <div class="card__content">
+          <h2 class="card__title">Chaqueta d’esgrima</h2>
+          <p class="card__description">Chaqueta homologada, amb materials resistents i ventilació per a màxima comoditat i protecció.</p>
+        </div>
+      </div>
+      <div class="card card-small">
+        <img src="img/icons/vacio.svg" alt="Próxim material" class="card-icon">
+        <div class="card__content">
+          <h2 class="card__title">&nbsp;</h2>
+          <p class="card__description">&nbsp;</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer nuevo -->
+  <footer>
+    <div class="social-icons">
+      <a href="https://www.instagram.com/esgrimasap/" target="_blank" rel="noopener">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M224,202.66A53.34,53.34,0,1,0,277.34,256,53.38,53.38,0,0,0,224,202.66Zm124.71-41a54.28,54.28,0,0,0-30.67-30.68c-21.3-8.42-71.68-6.47-95.91-6.47s-74.61-1.95-95.91,6.47a54.28,54.28,0,0,0-30.67,30.68c-8.42,21.3-6.47,71.68-6.47,95.91s-1.95,74.61,6.47,95.91a54.28,54.28,0,0,0,30.67,30.68c21.3,8.42,71.68,6.47,95.91,6.47s74.61,1.95,95.91-6.47a54.28,54.28,0,0,0,30.67-30.68c8.42-21.3,6.47-71.68,6.47-95.91S357.13,183,348.71,161.66ZM224,338a82,82,0,1,1,82-82A82,82,0,0,1,224,338Zm85-148a19,19,0,1,1,19-19A19,19,0,0,1,309,190Z"/></svg>
+      </a>
+      <a href="https://www.tiktok.com/@esgrimasap" target="_blank" rel="noopener">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M448,209.9a210.6,210.6,0,0,1-65.7-10.7V341.1a108,108,0,1,1-108-108V282.1a54,54,0,1,0,54,54V209.9Z"/></svg>
+      </a>
+    </div>
+    <p>© 2025 Esgrima SAP.</p>
+  </footer>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const menuToggle = document.getElementById("menu-toggle");
+    const menu = document.getElementById("menu");
+    const botonCerrar = document.getElementById("cerrar-menu");
+
+    if (menuToggle && menu) {
+      menuToggle.addEventListener("click", () => {
+        menu.classList.add("active");
+        menuToggle.classList.add("open");
+      });
+    }
+
+    if (botonCerrar && menu) {
+      botonCerrar.addEventListener("click", () => {
+        menu.classList.remove("active");
+        menuToggle.classList.remove("open");
+      });
+    }
+
+    document.addEventListener('click', (e) => {
+      if (menu.classList.contains('active') && !menu.contains(e.target) && e.target !== menuToggle) {
+        menu.classList.remove('active');
+        menuToggle.classList.remove('open');
+      }
+    });
+  });
+</script>
+</body>
+</html>

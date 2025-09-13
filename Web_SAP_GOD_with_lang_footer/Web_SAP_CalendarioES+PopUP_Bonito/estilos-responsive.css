@@ -1,0 +1,244 @@
+/* === SAP Responsive Enhancements (Mejorado) === */
+:root{
+  --sap-green: #2f5a3a;
+  --sap-gray: #4a4a4a;
+  --sap-white: #ffffff;
+}
+
+header, nav { position: relative; }
+
+/* Logo block */
+nav .sap-logo{
+  display:flex; align-items:center; gap:.5rem;
+  text-decoration:none; color:var(--sap-white);
+}
+nav .sap-logo img{ height:48px; width:auto; display:block; }
+nav .sap-logo span{ font-weight:700; font-size:1.1rem; letter-spacing:.3px; }
+
+/* Navbar container */
+nav{
+  display:flex; align-items:center; justify-content:space-between;
+  gap:1rem;
+  padding: .6rem 1.25rem;
+  box-sizing:border-box;
+}
+nav ul{ 
+  display:flex; gap:1rem; 
+  align-items:center; margin:0; padding:0; 
+  list-style:none; 
+}
+nav ul li a{ text-decoration:none; }
+
+/* Hamburger button */
+.sap-hamburger{
+  display:none; background:none; border:none; color:var(--sap-white);
+  font-size:2rem; line-height:1; cursor:pointer;
+}
+
+/* Smooth transition */
+#navbar, header.sticky, header.fixed, header.floating {
+  transition: background .25s ease;
+}
+
+/* ===== Tablets & Mobile ===== */
+@media (max-width: 900px){
+  .sap-hamburger{ display:block; }
+
+  /* Menu desplegable */
+  nav ul{ 
+    display:none; 
+    position:absolute; left:0; right:0; top:100%;
+    background: rgba(0,0,0,.92);
+    padding: 1rem;
+    flex-direction:column; gap:1rem;
+    box-shadow: 0 10px 30px rgba(0,0,0,.35);
+    z-index: 999;
+  }
+  body.menu-open nav ul{ display:flex; }
+
+  /* Logo más compacto */
+  nav .sap-logo img{ height:40px; }
+  nav .sap-logo span{ font-size:1rem; }
+
+  /* Hero y títulos más claros en pantallas pequeñas */
+  .hero h1 {
+    font-size: 1.8rem;
+    padding: 0.8rem 1.2rem;
+  }
+  h2 {
+    font-size: 1.4rem;
+    margin-top: 1.2rem;
+  }
+}
+
+/* ===== Small phones ===== */
+@media (max-width: 480px){
+  nav .sap-logo img{ height:34px; }
+  nav .sap-logo span{ font-size:.9rem; }
+
+  .hero h1 {
+    font-size: 1.5rem;
+    padding: 0.6rem 1rem;
+  }
+  h2 {
+    font-size: 1.2rem;
+  }
+}
+
+/* === Leyenda del calendario pastel === */
+.calendar-legend {
+  max-width: 900px;
+  margin: 20px auto 10px auto;
+  font-family: Arial, sans-serif;
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  color: #333;
+}
+
+.legend-color {
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  margin-right: 5px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+/* ===== Material catálogo responsive seguro ===== */
+
+/* Tablets y pantallas medianas (solo dispositivos) */
+@media (max-width: 900px) and (max-device-width: 900px){
+  main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+    position: static;
+    margin: 20px 0;
+  }
+
+  .producto {
+    position: relative !important; /* Para que no esté absoluto */
+    top: auto !important;
+    left: auto !important;
+    transform: none !important;
+  }
+
+  .producto-img {
+    width: 120px !important;
+  }
+
+  .info-burbujas .burbuja {
+    font-size: 12px;
+    width: 100px;
+    height: 35px;
+  }
+}
+
+/* Móviles pequeños (solo dispositivos) */
+@media (max-width: 480px) and (max-device-width: 480px){
+  main {
+    gap: 25px;
+  }
+
+  .producto-img {
+    width: 100px !important;
+  }
+
+  .info-burbujas .burbuja {
+    font-size: 11px;
+    width: 90px;
+    height: 30px;
+  }
+}
+
+
+/* ===== SELECTOR DE IDIOMAS ARRIBA IZQUIERDA ===== */
+.language-switcher-top-left {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 9999;
+  display: flex;
+  gap: 8px;
+}
+
+.lang-btn {
+  background: rgba(255,255,255,0.9);
+  border: 2px solid #0a5c3b;
+  padding: 6px 10px;
+  border-radius: 15px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 600;
+  font-size: 0.8rem;
+  color: #0a5c3b;
+}
+
+.lang-btn.active {
+  background: #0a5c3b;
+  color: white;
+}
+
+.lang-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+
+/* ===== FOOTER MEJORADO ===== */
+.footer-mejorado {
+  background: linear-gradient(135deg, #2a2a2a, #1a1a1a);
+  color: white;
+  text-align: center;
+  padding: 3rem 2rem;
+  margin-top: 4rem;
+}
+
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.footer-text {
+  font-size: 1.1rem;
+  margin: 0;
+  font-weight: 600;
+}
+
+.footer-subtext {
+  font-size: 0.9rem;
+  margin: 0;
+  opacity: 0.8;
+}
+
+.social-links {
+  display: flex;
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.social-links a {
+  color: white;
+  font-size: 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.social-links a:hover {
+  color: #4caf50;
+  transform: translateY(-3px);
+}

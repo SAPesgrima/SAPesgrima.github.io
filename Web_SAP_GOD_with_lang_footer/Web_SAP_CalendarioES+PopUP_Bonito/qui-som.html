@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Qui Som</title>
+
+  <!-- Tus estilos y scripts propios -->
+  <link rel="stylesheet" href="estilos.css">
+  <link rel="stylesheet" href="estilos-responsive.css">
+  <link rel="stylesheet" href="sap-navbar.css">
+  <script defer src="script.js"></script>
+
+  <style>
+    /* Evitar que el contenido se esconda bajo la navbar fija */
+    #page-content { padding-top: 72px; }
+
+    /* ===== NUEVO NAVBAR ===== */
+    .navbar {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: transparent;
+      z-index: 2000;
+    }
+
+    .logo img {
+      height: 150px;
+      width: auto;
+    }
+
+    /* Botón hamburguesa */
+    .menu-toggle {
+      display: flex;
+      flex-direction: column;
+      cursor: pointer;
+      gap: 6px;
+    }
+    .menu-toggle span {
+      width: 30px;
+      height: 3px;
+      background: #0a5c3b;
+      transition: all 0.3s ease;
+    }
+
+    /* Menú desplegable */
+    .menu {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 30%;
+      height: 100vh;
+      background: rgba(26, 26, 26, 0.85);
+      backdrop-filter: blur(5px);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      transition: right 0.5s ease;
+      z-index: 2001;
+    }
+
+    .menu.active { right: 0; }
+
+    .menu ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .menu ul li a {
+      text-decoration: none;
+      color: white;
+      font-size: 1.5rem;
+      font-weight: 600;
+      transition: color 0.3s;
+    }
+
+    .menu ul li a:hover { color: #4caf50; }
+
+    /* Selector de idiomas dentro del menú */
+    .language-switcher-menu {
+      margin-top: 0.5rem;
+      display: flex;
+      gap: 10px;
+    }
+
+    .lang-btn {
+      background: rgba(255,255,255,0.9);
+      border: 2px solid #0a5c3b;
+      padding: 6px 10px;
+      border-radius: 15px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-weight: 600;
+      font-size: 0.8rem;
+      color: #0a5c3b;
+    }
+
+    .lang-btn.active {
+      background: #0a5c3b;
+      color: white;
+    }
+
+    .lang-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+
+    /* Botón cerrar menú */
+    .btn-cerrar {
+      align-self: flex-end;
+      background: transparent;
+      color: #fff;
+      border: none;
+      font-size: 2rem;
+      cursor: pointer;
+      margin: 1rem;
+      padding: 0;
+      line-height: 1;
+    }
+  </style>
+</head>
+<body>
+
+<div id="page-content">
+  <!-- Navbar nuevo -->
+  <header class="navbar">
+    <div class="logo">
+      <a href="index.html"><img src="img/fotosap.png" alt="SAP Logo"></a>
+    </div>
+
+    <!-- Botón hamburguesa -->
+    <div class="menu-toggle" id="menu-toggle">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+
+    <!-- Menú desplegable -->
+    <nav class="menu" id="menu">
+      <button id="cerrar-menu" class="btn-cerrar">✕</button>
+      <ul>
+        <li><a href="index.html">Inici</a></li>
+        <li><a href="qui-som.html" class="active">Qui Som</a></li>
+        <li><a href="classes.html">Classes</a></li>
+        <li><a href="competicions.html">Competicions</a></li>
+        <li><a href="material.html">Material</a></li>
+        <li><a href="contacte.html">Contacte</a></li>
+      </ul>
+      <div class="language-switcher-menu">
+        <button class="lang-btn active" data-lang="ca">CAT</button>
+        <button class="lang-btn" data-lang="es">ES</button>
+        <button class="lang-btn" data-lang="en">EN</button>
+      </div>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h1 class="page-title">Els nostres entrenadors</h1>
+  </section>
+
+  <section class="entrenadors">
+    <div class="cards">
+      <!-- Júlia -->
+      <div class="card">
+        <img src="Fotos/julia.jpg" alt="Júlia Blanco" class="trainer-photo">
+        <h3>Júlia Blanco</h3>
+        <ul>
+          <li><span class="icon-sword"></span> Entrenadora categories infantils</li>
+          <li><span class="icon-sword"></span> Titulada en esports de lleure</li>
+          <li><span class="icon-sword"></span> Medallista en tornejos catalans</li>
+          <li><span class="icon-sword"></span> Practicant d’esgrima des dels 10 anys</li>
+        </ul>
+      </div>
+      <!-- Marçal -->
+      <div class="card">
+        <img src="Fotos/marcal.jpg" alt="Marçal Noges" class="trainer-photo">
+        <h3>Marçal Noges Naranjo</h3>
+        <ul>
+          <li><span class="icon-sword"></span> Entrenador principal</li>
+          <li><span class="icon-sword"></span> Titulat en esports d’aventura</li>
+          <li><span class="icon-sword"></span> Estudiant de fisioteràpia</li>
+          <li><span class="icon-sword"></span> Àrbitre titulat</li>
+          <li><span class="icon-sword"></span> En el club des del 2008</li>
+        </ul>
+      </div>
+      <!-- Unai -->
+      <div class="card">
+        <img src="Fotos/unai.jpg" alt="Unai Florido" class="trainer-photo">
+        <h3>Unai Florido Molina</h3>
+        <ul>
+          <li><span class="icon-sword"></span> Especialista en tècnica i competició</li>
+          <li><span class="icon-sword"></span> Àrbitre i Director Tècnic (FC d’Esgrima)</li>
+          <li><span class="icon-sword"></span> Major medallista del club</li>
+          <li><span class="icon-sword"></span> Suport als tiradors en competicions</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="qui-som">
+    <div class="container">
+      <h2>Qui som</h2>
+      <p> El Club d’Esgrima de Sant Sadurní va néixer l’any 2009 gràcies a la iniciativa d’un pare del col·legi Jacint Verdaguer, un apassionat de l’esgrima catalana que volia donar a conèixer aquest esport únic. El projecte va començar amb un petit grup de sis alumnes, però de seguida es va contagiar l’entusiasme i la passió per l’esgrima. </p>
+      <p> Amb els anys, el club va créixer fins a tenir més de seixanta tiradors, des dels 8 fins als més de 50 anys. Tot i els alts i baixos —canvis d’entrenador i president a causa de moments difícils—, el club mai no ha perdut la seva essència familiar. Els pares i mares, així com els primers alumnes, han estat sempre el motor que l’ha mantingut viu. </p>
+      <p> Avui dia, aquells nens i nenes que van començar el 2009 són ara els entrenadors que continuen transmetent els valors i l’amor per l’esgrima. La nostra il·lusió és clara: tornar a situar el club ben amunt dins l’esgrima catalana i seguir demostrant que la passió i la constància mouen muntanyes. </p>
+    </div>
+  </section>
+
+  <!-- Footer nuevo -->
+  <footer>
+    <div class="social-icons">
+      <a href="https://www.instagram.com/esgrimasap/" target="_blank" rel="noopener">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+          <path d="M224,202.66A53.34,53.34,0,1,0,277.34,256,53.38,53.38,0,0,0,224,202.66Zm124.71-41a54.28,54.28,0,0,0-30.67-30.68c-21.3-8.42-71.68-6.47-95.91-6.47s-74.61-1.95-95.91,6.47a54.28,54.28,0,0,0-30.67,30.68c-8.42,21.3-6.47,71.68-6.47,95.91s-1.95,74.61,6.47,95.91a54.28,54.28,0,0,0,30.67,30.68c21.3,8.42,71.68,6.47,95.91,6.47s74.61,1.95,95.91-6.47a54.28,54.28,0,0,0,30.67-30.68c8.42-21.3,6.47-71.68,6.47-95.91S357.13,183,348.71,161.66ZM224,338a82,82,0,1,1,82-82A82,82,0,0,1,224,338Zm85-148a19,19,0,1,1,19-19A19,19,0,0,1,309,190Z"/>
+        </svg>
+      </a>
+      <a href="https://www.tiktok.com/@esgrimasap" target="_blank" rel="noopener">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+          <path d="M448,209.9a210.6,210.6,0,0,1-65.7-10.7V341.1a108,108,0,1,1-108-108V282.1a54,54,0,1,0,54,54V209.9Z"/>
+        </svg>
+      </a>
+    </div>
+    <p>© 2025 Esgrima SAP.</p>
+  </footer>
+
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const menuToggle = document.getElementById("menu-toggle");
+    const menu = document.getElementById("menu");
+    const botonCerrar = document.getElementById("cerrar-menu");
+
+    if (menuToggle && menu) {
+      menuToggle.addEventListener("click", () => {
+        menu.classList.add("active");
+        menuToggle.classList.add("open");
+      });
+    }
+
+    if (botonCerrar && menu) {
+      botonCerrar.addEventListener("click", () => {
+        menu.classList.remove("active");
+        menuToggle.classList.remove("open");
+      });
+    }
+
+    document.addEventListener('click', (e) => {
+      if (menu.classList.contains('active') && !menu.contains(e.target) && e.target !== menuToggle) {
+        menu.classList.remove('active');
+        menuToggle.classList.remove('open');
+      }
+    });
+  });
+</script>
+</body>
+</html>

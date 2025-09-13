@@ -1,0 +1,20 @@
+[
+  {
+    "title": "Copa Catalunya - Barcelona",
+    "start": "2025-09-10",
+    "description": "<strong>Lugar:</strong> Barcelona<br><strong>Hora:</strong> 10:00<br><strong>Categoria:</strong> Senior Masculino",
+    "color": "#E3BAFF"
+  },
+  {
+    "title": "Torneo Infantil - Vilafranca",
+    "start": "2025-09-18",
+    "description": "<strong>Lugar:</strong> Vilafranca del Penedès<br><strong>Hora:</strong> 12:00<br><strong>Edad:</strong> 8-12 años",
+    "color": "#FFB3BA"
+  },
+  {
+    "title": "Festivo Nacional",
+    "start": "2025-09-21",
+    "description": "Día festivo",
+    "color": "#FFD1DC"
+  }
+]

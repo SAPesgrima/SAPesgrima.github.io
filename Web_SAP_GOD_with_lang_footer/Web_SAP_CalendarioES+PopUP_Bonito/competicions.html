@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Competicions</title>
+
+  <!-- Tus estilos y scripts propios -->
+  <link rel="stylesheet" href="estilos.css">
+  <link rel="stylesheet" href="estilos-responsive.css">
+  <script defer src="script.js"></script>
+
+  <style>
+    /* Evitar que el contenido se esconda bajo la navbar fija */
+    #page-content { padding-top: 72px; }
+
+    /* ===== NUEVO NAVBAR ===== */
+    .navbar {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: transparent;
+      z-index: 2000;
+    }
+
+    .logo img {
+      height: 150px;
+      width: auto;
+    }
+
+    /* Botón hamburguesa */
+    .menu-toggle {
+      display: flex;
+      flex-direction: column;
+      cursor: pointer;
+      gap: 6px;
+    }
+    .menu-toggle span {
+      width: 30px;
+      height: 3px;
+      background: #0a5c3b;
+      transition: all 0.3s ease;
+    }
+
+    /* Menú desplegable */
+    .menu {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 30%;
+      height: 100vh;
+      background: rgba(26, 26, 26, 0.85);
+      backdrop-filter: blur(5px);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      transition: right 0.5s ease;
+      z-index: 2001;
+    }
+
+    .menu.active { right: 0; }
+
+    .menu ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .menu ul li a {
+      text-decoration: none;
+      color: white;
+      font-size: 1.5rem;
+      font-weight: 600;
+      transition: color 0.3s;
+    }
+    .menu ul li a:hover { color: #4caf50; }
+
+    /* Selector de idiomas dentro del menú */
+    .language-switcher-menu {
+      margin-top: 0.5rem;
+      display: flex;
+      gap: 10px;
+    }
+
+    .lang-btn {
+      background: rgba(255,255,255,0.9);
+      border: 2px solid #0a5c3b;
+      padding: 6px 10px;
+      border-radius: 15px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-weight: 600;
+      font-size: 0.8rem;
+      color: #0a5c3b;
+    }
+
+    .lang-btn.active {
+      background: #0a5c3b;
+      color: white;
+    }
+
+    .lang-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+
+    /* Botón cerrar menú */
+    .btn-cerrar {
+      align-self: flex-end;
+      background: transparent;
+      color: #fff;
+      border: none;
+      font-size: 2rem;
+      cursor: pointer;
+      margin: 1rem;
+      padding: 0;
+      line-height: 1;
+    }
+
+    /* ===== NUEVAS CATEGORÍAS VISUALES ===== */
+    .main-categories {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      margin-top: 2rem;
+      gap: 1rem;
+    }
+    .main-card {
+      background: #0a5c3b;
+      color: white;
+      border-radius: 15px;
+      padding: 1rem 2rem;
+      text-align: center;
+      cursor: pointer;
+      min-width: 150px;
+      transition: transform 0.3s;
+    }
+    .main-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .sub-categories {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 1rem;
+    }
+    .sub-card {
+      display: none;
+      border-radius: 12px;
+      padding: 0.5rem 1rem;
+      background-color: #f9c5d1; /* pastel rosa por defecto */
+      color: #333;
+      font-weight: 600;
+      cursor: default;
+      transition: background-color 0.3s;
+    }
+    .sub-card.petits { background-color: #f9c5d1; }
+    .sub-card.mitjans { background-color: #c5f9d1; }
+    .sub-card.grans { background-color: #c5d1f9; }
+
+    /* Mostrar subcategorías activas */
+    .sub-card.active {
+      display: inline-block;
+    }
+  </style>
+</head>
+
+<body>
+<div id="page-content">
+  <!-- Navbar nuevo -->
+  <header class="navbar">
+    <div class="logo">
+      <a href="index.html"><img src="img/fotosap.png" alt="SAP Logo"></a>
+    </div>
+
+    <!-- Botón hamburguesa -->
+    <div class="menu-toggle" id="menu-toggle">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+
+    <!-- Menú desplegable -->
+    <nav class="menu" id="menu">
+      <button id="cerrar-menu" class="btn-cerrar">✕</button>
+      <ul>
+        <li><a href="index.html">Inici</a></li>
+        <li><a href="qui-som.html">Qui Som</a></li>
+        <li><a href="classes.html">Classes</a></li>
+        <li><a href="competicions.html" class="active">Competicions</a></li>
+        <li><a href="material.html">Material</a></li>
+        <li><a href="contacte.html">Contacte</a></li>
+      </ul>
+      <div class="language-switcher-menu">
+        <button class="lang-btn active" data-lang="ca">CAT</button>
+        <button class="lang-btn" data-lang="es">ES</button>
+        <button class="lang-btn" data-lang="en">EN</button>
+      </div>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h1 class="page-title">Competicions</h1>
+  </section>
+
+  <main>
+    <section class="content-section reveal">
+      <h2>Competicions</h2>
+      <img src="img/esgrima1.jpg" alt="Beneficis">
+      <p>Competicions Al nostre club d’esgrima entenem l’esport com una activitat que va més enllà de la competició. La nostra prioritat és que cada alumne gaudeixi de l’aprenentatge i del procés personal, sense cap obligació de participar en tornejos. Ara bé, aquells que decideixin competir trobaran tot el suport i l’acompanyament necessari. En les categories infantils (benjamins, alevins i infantils), el calendari de competicions sol incloure entre 3 i 4 proves a l’any, sempre celebrades en cap de setmana (dissabte o diumenge), per tal de facilitar la participació. </p>
+    </section>
+
+    <!-- NUEVAS CATEGORÍAS VISUALES -->
+    <section class="content-section reveal">
+      <h2>Categories</h2>
+      <div class="main-categories">
+        <div class="main-card" data-target="petits">
+          <h3>Petits</h3>
+          <p><strong>8-15 anys</strong></p>
+        </div>
+        <div class="main-card" data-target="mitjans">
+          <h3>Mitjans</h3>
+          <p><strong>+17 anys</strong></p>
+        </div>
+        <div class="main-card" data-target="grans">
+          <h3>Grans</h3>
+          <p><strong>+30 anys</strong></p>
+        </div>
+      </div>
+
+      <div class="sub-categories">
+        <div class="sub-card petits">M11</div>
+        <div class="sub-card petits">M13</div>
+        <div class="sub-card petits">M15</div>
+
+        <div class="sub-card mitjans">M17</div>
+        <div class="sub-card mitjans">M20</div>
+        <div class="sub-card mitjans">ABS</div>
+
+        <div class="sub-card grans">VET 30</div>
+        <div class="sub-card grans">VET 40</div>
+        <div class="sub-card grans">VET 50</div>
+        <div class="sub-card grans">VET 60</div>
+        <div class="sub-card grans">VET 70</div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer nuevo -->
+  <footer>
+    <div class="social-icons">
+      <a href="https://www.instagram.com/esgrimasap/" target="_blank" rel="noopener">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+          <path d="M224,202.66A53.34,53.34,0,1,0,277.34,256,53.38,53.38,0,0,0,224,202.66Zm124.71-41a54.28,54.28,0,0,0-30.67-30.68c-21.3-8.42-71.68-6.47-95.91-6.47s-74.61-1.95-95.91,6.47a54.28,54.28,0,0,0-30.67,30.68c-8.42,21.3-6.47,71.68-6.47,95.91s-1.95,74.61,6.47,95.91a54.28,54.28,0,0,0,30.67,30.68c21.3,8.42,71.68,6.47,95.91,6.47s74.61,1.95,95.91-6.47a54.28,54.28,0,0,0,30.67-30.68c8.42-21.3,6.47-71.68,6.47-95.91S357.13,183,348.71,161.66ZM224,338a82,82,0,1,1,82-82A82,82,0,0,1,224,338Zm85-148a19,19,0,1,1,19-19A19,19,0,0,1,309,190Z"/>
+        </svg>
+      </a>
+      <a href="https://www.tiktok.com/@esgrimasap" target="_blank" rel="noopener">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+          <path d="M448,209.9a210.6,210.6,0,0,1-65.7-10.7V341.1a108,108,0,1,1-108-108V282.1a54,54,0,1,0,54,54V209.9Z"/>
+        </svg>
+      </a>
+    </div>
+    <p>© 2025 Esgrima SAP.</p>
+  </footer>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const menuToggle = document.getElementById("menu-toggle");
+    const menu = document.getElementById("menu");
+    const botonCerrar = document.getElementById("cerrar-menu");
+
+    if (menuToggle && menu) {
+      menuToggle.addEventListener("click", () => {
+        menu.classList.add("active");
+        menuToggle.classList.add("open");
+      });
+    }
+
+    if (botonCerrar && menu) {
+      botonCerrar.addEventListener("click", () => {
+        menu.classList.remove("active");
+        menuToggle.classList.remove("open");
+      });
+    }
+
+    document.addEventListener('click', (e) => {
+      if (menu.classList.contains('active') && !menu.contains(e.target) && e.target !== menuToggle) {
+        menu.classList.remove('active');
+        menuToggle.classList.remove('open');
+      }
+    });
+
+    /* === Interactividad categorías === */
+    const mainCards = document.querySelectorAll(".main-card");
+    const subCards = document.querySelectorAll(".sub-card");
+
+    mainCards.forEach(card => {
+      card.addEventListener("click", () => {
+        const target = card.getAttribute("data-target");
+
+        // Ocultar todas
+        subCards.forEach(sub => sub.classList.remove("active"));
+
+        // Mostrar solo las de la categoría clicada
+        document.querySelectorAll(".sub-card." + target).forEach(sub => {
+          sub.classList.add("active");
+        });
+      });
+    });
+  });
+</script>
+</body>
+</html>
